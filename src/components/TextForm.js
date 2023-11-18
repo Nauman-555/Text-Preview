@@ -21,7 +21,16 @@ export default function TextForm(props) {
       
       let newText =  `${"Number of characters =" + text.length} \n${"Number of words =" +text.split(" ").length} \n${"Time taken to read the whole words=" + text.split(" ").length* 0.008}`;
       setText(newText);
-    };
+    }
+    const handleCopy =() => {
+      var text = document.getElementById("exampleFormControlTextarea1");
+      text.select();
+      navigator.clipboard.writeText(text.value);
+    }
+    const handleExtraSpaces = () =>{
+      let newText = text.split(/[ ]+/);
+      setText(newText.join(" "));
+    }
     
 
     const handleonChange =(event)=>{
@@ -39,6 +48,8 @@ export default function TextForm(props) {
 <button className="btn btn-primary mx-2" onClick={handleDownClick}> Change to LowerCase</button>
 <button className="btn btn-primary mx-2" onClick={handleClearClick}> Clear Text</button>
 <button className="btn btn-primary mx-2" onClick={handleProcessClick}> Process Text</button>
+<button className="btn btn-primary mx-2" onClick={handleCopy}> Copy Text</button>
+<button className="btn btn-primary mx-2" onClick={handleExtraSpaces}> Remove Exrta Spaces</button>
 {/* <div>
   <p> Number of Characters are {text.length}</p>
   <p> Time taken to read the whole words {text.split(" ").length* 0.008}</p>
